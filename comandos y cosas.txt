@@ -1,0 +1,12 @@
+salir del editor de git:    :wq
+Git add * para añadir todo
+git add (nombre archivo) para añadir algo concreto
+git commit para subir cosas añadidas
+git commit -m "comentario de que has cambiado en el commit" para saltarte el editor de git
+git status para saber si hay cosas sin añadir
+git log para ver cambios pasados en el repositorio (arriba + reciente)
+
+
+ls para ver lista de archivos en donde estoy
+pdw para ver en que carpeta estoy
+cd + nombre de archivo para moverme entre carpetas
