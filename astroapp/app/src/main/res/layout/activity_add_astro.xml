@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_astro">
+
+    <TextView
+        android:id="@+id/Title_text"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:text="Elija un nombre y categoría para su astro:"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="#D6BC38"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="600dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        ></TextView>
+
+    <EditText
+        android:id="@+id/input_astroName"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="600dp"
+        android:hint="EJ: Saturno/Pleyades..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title_text"></EditText>
+
+    <GridView
+        android:id="@+id/lista_botones"
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="10dp"
+        android:numColumns="4"
+        tools:listitem="@layout/astro_category"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_astroName"></GridView>
+
+    <TextView
+        android:id="@+id/categoria_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="420dp"
+        android:text="Categoria"
+        android:textAlignment="center"
+        android:textColor="#D6BC38"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lista_botones"
+        app:layout_constraintStart_toStartOf="@+id/lista_botones"
+        app:layout_constraintTop_toBottomOf="@+id/lista_botones"></TextView>
+
+    <TextView
+        android:id="@+id/fecha_elegida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Fecha: "
+        android:textColor="#D6BC38"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_show"></TextView>
+
+    <TextView
+        android:id="@+id/hora_elegida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Hora: "
+        android:textColor="#D6BC38"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_show"></TextView>
+
+    <DatePicker
+        android:id="@+id/calendario"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_show"
+        app:layout_constraintVertical_bias="0.215"></DatePicker>
+
+    <ImageButton
+        android:id="@+id/boton_calendario"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="309dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/baseline_calendar_month_24"
+        android:background="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_show"></ImageButton>
+
+    <TimePicker
+        android:id="@+id/selector_hora"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/calendario"></TimePicker>
+
+
+    <ImageButton
+        android:id="@+id/hora_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/baseline_more_time_24"
+        android:background="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/categoria_show"
+        ></ImageButton>
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="CONFIRMAR"
+        android:textColor="#FFD233"
+        android:backgroundTint="#4EACFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hora_elegida"></Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
