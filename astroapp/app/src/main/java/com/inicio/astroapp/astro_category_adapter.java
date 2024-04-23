@@ -35,7 +35,7 @@ public class astro_category_adapter extends ArrayAdapter {
             convertView = layoutInflater.inflate(ItemLayout, parent, false);
         }
 
-        ImageButton boton_item = convertView.findViewById(R.id.boton_categoria);
+        ImageView boton_item = convertView.findViewById(R.id.boton_categoria);
 
 
         boton_item.setImageDrawable(context.getDrawable(imagenes_categorias[position]));

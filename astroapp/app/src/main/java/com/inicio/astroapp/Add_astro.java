@@ -3,10 +3,15 @@ package com.inicio.astroapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,7 +22,7 @@ import java.util.Date;
 public class Add_astro extends AppCompatActivity {
 
     GridView lista_botones;
-
+    EditText nombre_astro;
     ImageButton boton_calendar, boton_hora;
     DatePicker calendario;
     TimePicker hora;
@@ -26,17 +31,32 @@ public class Add_astro extends AppCompatActivity {
 
     Button confirmar_boton;
 
+    int item_pos;
+    int selected_img;
+
+    String nombre_final, fecha_final, categoria_actual;
+    ;
     private astro_category_adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_astro);
+        item_pos = -1;
 
-
+        nombre_astro = findViewById(R.id.input_astroName);
         lista_botones = findViewById(R.id.lista_botones);
         adapter = new astro_category_adapter(this, R.layout.astro_category,  astro_cat_data.imagenes_iconos());
         lista_botones.setAdapter(adapter);
+        lista_botones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                item_pos = position;
+
+                v.findViewById(R.id.boton_categoria).setBackgroundColor(Color.rgb(87,35,100));
+                categoria();
+            }
+        });
 
         boton_calendar = findViewById(R.id.boton_calendario);
         calendario = findViewById(R.id.calendario);
@@ -119,7 +139,19 @@ public class Add_astro extends AppCompatActivity {
         return hora_final;
     }
 
-    public void confirm_astro(){
+    public void categoria(){
+        Integer[] array_imagenes = astro_cat_data.imagenes_iconos();
+        selected_img = array_imagenes[item_pos];
 
+    }
+
+
+    public void confirm_astro(){
+        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText() != null){
+
+        }
+        else{
+
+        }
     }
 }

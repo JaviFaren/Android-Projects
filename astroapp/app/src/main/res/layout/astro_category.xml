@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/boton_categoria"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -14,7 +14,7 @@
         android:background="#94FFE01D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
