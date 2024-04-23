@@ -3,6 +3,8 @@ package com.inicio.astroapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Image;
 import android.os.Bundle;
@@ -27,15 +29,15 @@ public class Add_astro extends AppCompatActivity {
     DatePicker calendario;
     TimePicker hora;
 
-    TextView fecha_seleccionada, hora_seleccionada;
+    TextView fecha_seleccionada, hora_seleccionada, categoria_shower;
 
     Button confirmar_boton;
 
     int item_pos;
-    int selected_img;
+    Integer selected_img;
 
     String nombre_final, fecha_final, categoria_actual;
-    ;
+    Integer categoria_final;
     private astro_category_adapter adapter;
 
     @Override
@@ -43,7 +45,8 @@ public class Add_astro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_astro);
         item_pos = -1;
-
+        categoria_shower = findViewById(R.id.categoria_show);
+        categoria_shower.setText("Selecciona categoria");
         nombre_astro = findViewById(R.id.input_astroName);
         lista_botones = findViewById(R.id.lista_botones);
         adapter = new astro_category_adapter(this, R.layout.astro_category,  astro_cat_data.imagenes_iconos());
@@ -52,6 +55,35 @@ public class Add_astro extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 item_pos = position;
+                switch (position){
+                    case 0:
+                        categoria_shower.setText("Planeta");
+                        break;
+                    case 1:
+                        categoria_shower.setText("Satelite");
+                        break;
+                    case 2:
+                        categoria_shower.setText("Sol");
+                        break;
+                    case 3:
+                        categoria_shower.setText("Galaxia");
+                        break;
+                    case 4:
+                        categoria_shower.setText("Constelacion");
+                        break;
+                    case 5:
+                        categoria_shower.setText("Nebulosa");
+                        break;
+                    case 6:
+                        categoria_shower.setText("cometa");
+                        break;
+                    case 7:
+                        categoria_shower.setText("Asteroide");
+                        break;
+                }
+                for(int i=0; i<8; i++){
+                    //Cambiar el fondo del resto de items
+                }
 
                 v.findViewById(R.id.boton_categoria).setBackgroundColor(Color.rgb(87,35,100));
                 categoria();
@@ -148,7 +180,13 @@ public class Add_astro extends AppCompatActivity {
 
     public void confirm_astro(){
         if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText() != null){
+            nombre_final = "" + nombre_astro.getText();
+            categoria_final = selected_img;
+            fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + hora_formatter();
 
+            SharedPreferences preferences = getSharedPreferences("astros_almacenados", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("nombre", "nombreastro");
         }
         else{
 

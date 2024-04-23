@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         lista_astros = findViewById(R.id.lista_astros);
-        adapter = new astros_list_adapter(MainActivity.this, R.layout.item_mainlist,  astros_data.lista_prueba());
+        adapter = new astros_list_adapter(MainActivity.this, R.layout.item_mainlist,  astros_data.lista_astros);
         lista_astros.setAdapter(adapter);
 
         boton_desplegable.setOnClickListener(view -> boton_despl_accion());
