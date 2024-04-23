@@ -4,6 +4,7 @@ package com.inicio.astroapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.Image;
@@ -179,17 +180,26 @@ public class Add_astro extends AppCompatActivity {
 
 
     public void confirm_astro(){
-        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText() != null){
+        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText().toString() != ""){
             nombre_final = "" + nombre_astro.getText();
             categoria_final = selected_img;
             fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + hora_formatter();
 
-            SharedPreferences preferences = getSharedPreferences("astros_almacenados", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("nombre", "nombreastro");
-        }
-        else{
+            astros_obj nuevo_astro = new astros_obj(nombre_final, categoria_final, fecha_final);
 
+            astros_data.lista_astros.add(nuevo_astro);
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        else if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
+            fecha_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+        }
+        else if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
+            hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+        }
+        else if(nombre_astro.getText().toString() == ""){
+            nombre_astro.setError("Introduce un nombre");
         }
     }
 }
