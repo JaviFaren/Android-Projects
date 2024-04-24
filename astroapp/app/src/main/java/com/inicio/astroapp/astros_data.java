@@ -4,18 +4,22 @@ import android.media.Image;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class astros_data {
 
     public static List <astros_obj> lista_astros = new ArrayList<>();
 
-    public static List<astros_obj> lista_prueba(){
-//        String[] nombres_astros = {"Sol", "Luna"};
-//        int[] imagenes_astros = {R.drawable.sol, R.drawable.satelite };
-//
-//        for(int i=0; i<nombres_astros.length; i++){
-//            lista_astros.add(new astros_obj(nombres_astros[i], imagenes_astros[i]));
-//        }
-        return  lista_astros;
+
+    public static String convertirAJson() {
+        Gson gson = new Gson();
+        String json = gson.toJson(lista_astros);
+        return json;
+    }
+
+    public static void convertirAJava(String json) {
+        Gson gson = new Gson();
+        lista_astros = gson.fromJson(json, new TypeToken<List<astros_obj>>(){}.getType());
     }
 }

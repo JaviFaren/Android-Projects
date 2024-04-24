@@ -83,8 +83,9 @@ public class Add_astro extends AppCompatActivity {
                         break;
                 }
                 for(int i=0; i<8; i++){
-                    //Cambiar el fondo del resto de items
+                    parent.getChildAt(i).findViewById(R.id.boton_categoria).setBackgroundColor(Color.rgb(255, 235, 112));
                 }
+
 
                 v.findViewById(R.id.boton_categoria).setBackgroundColor(Color.rgb(87,35,100));
                 categoria();
@@ -183,23 +184,37 @@ public class Add_astro extends AppCompatActivity {
         if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText().toString() != ""){
             nombre_final = "" + nombre_astro.getText();
             categoria_final = selected_img;
-            fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + hora_formatter();
+            fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + " | " + hora_formatter();
 
             astros_obj nuevo_astro = new astros_obj(nombre_final, categoria_final, fecha_final);
 
             astros_data.lista_astros.add(nuevo_astro);
 
+            guardar_astrosPersistentes();
+
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-        else if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
-            fecha_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+        else{
+            if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
+                fecha_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+            }
+            if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
+                hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+            }
+            if(nombre_astro.getText().toString() == ""){
+                nombre_astro.setError("Introduce un nombre");
+            }
         }
-        else if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
-            hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
-        }
-        else if(nombre_astro.getText().toString() == ""){
-            nombre_astro.setError("Introduce un nombre");
-        }
+    }
+
+
+    public void guardar_astrosPersistentes(){
+        SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String json = astros_data.convertirAJson();
+        editor.putString("datos_astros", json);
+        editor.commit();
     }
 }

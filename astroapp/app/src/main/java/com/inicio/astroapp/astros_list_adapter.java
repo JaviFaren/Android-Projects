@@ -37,7 +37,7 @@ public class astros_list_adapter extends ArrayAdapter {
         }
 
         TextView texto_item = convertView.findViewById(R.id.texto_elemento);
-        texto_item.setText(datos_astros.get(position).nombre_astro);
+        texto_item.setText(datos_astros.get(position).nombre_astro + " \n " + datos_astros.get(position).fecha_astro);
 
         ImageView icono_item = convertView.findViewById(R.id.icono_elemento);
         icono_item.setImageResource(datos_astros.get(position).imagen_astro);

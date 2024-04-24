@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4B93FF"
     tools:context=".Add_astro">
 
     <TextView
         android:id="@+id/Title_text"
         android:layout_width="350dp"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:text="Elija un nombre y categoría para su astro:"
         android:textSize="25sp"
         android:textAlignment="center"
@@ -19,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="600dp"
+        android:layout_marginBottom="640dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         ></TextView>
@@ -28,9 +29,10 @@
         android:id="@+id/input_astroName"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginBottom="600dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginBottom="560dp"
+        android:layout_marginTop="5dp"
         android:hint="EJ: Saturno/Pleyades..."
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title_text"></EditText>
