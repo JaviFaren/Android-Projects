@@ -1,5 +1,4 @@
-# Android App
-## Astro Log Application
+# Android App (Astro Log)
 
 ![N|Solid](https://cdn-icons-png.flaticon.com/512/1283/1283488.png)
 
@@ -26,18 +25,82 @@ En la pantalla inicial se verá una lista de los astros ya observados con anteri
 - Hora de avistamiento (00:00 - am/pm)
 - Confirmar los cambios y agregarlo
 
-Una vez introducidos los datos, al volver a la pantalla principal se verá el astro agregado a la lista de avistamientos.
 
+Una vez introducidos los datos correctamente, se agregará el astro a la lista de registros y se cerrará la actividad, volviendo a la pantalla previa con los datos actualizados.
 
-## Codigos varios
+#### Codigo de envio de datos
 
-#### Recogida de datos del nuevo astro
 ```sh
+    public void confirm_astro(){
+            if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && !nombre_astro.getText().toString().equals("")){
+                nombre_final = "" + nombre_astro.getText();
+                categoria_final = selected_img;
+                fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + " | " + hora_formatter();
+    
+                astros_obj nuevo_astro = new astros_obj(nombre_final, categoria_final, fecha_final);
+    
+                astros_data.lista_astros.add(nuevo_astro);
+    
+                guardar_astrosPersistentes();
+    
+    
+                finish();
+            }
+            else{
+                if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
+                    fecha_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+                }
+                if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
+                    hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+                }
+                if(nombre_astro.getText().toString().equals("")){
+                    nombre_astro.setError("Introduce un nombre");
+                }
+            }
+        }
+```
 
+Durante el proceso de guardado o eliminado de los nuevos astros, estos se almacenan en formato JSON para constar con persistencia de datos.
+
+#### JSON Converter
+```sh
+    package com.inicio.astroapp;
+    
+    import java.util.ArrayList;
+    import java.util.List;
+    import com.google.gson.Gson;
+    import com.google.gson.reflect.TypeToken;
+    
+    public class astros_data {
+    
+        public static List <astros_obj> lista_astros = new ArrayList<>();
+    
+    
+        public static String convertirAJson() {
+            Gson gson = new Gson();
+            String json = gson.toJson(lista_astros);
+            return json;
+        }
+    
+        public static void convertirAJava(String json) {
+            Gson gson = new Gson();
+            lista_astros = gson.fromJson(json, new TypeToken<List<astros_obj>>(){}.getType());
+        }
+    }
+```
+#### Método para guardar los datos mediante el código anterior:
+```sh
+    public void guardar_astrosPersistentes(){
+        SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String json = astros_data.convertirAJson();
+        editor.putString("datos_astros", json);
+        editor.commit();
+    }
 ```
 
 #### Constructor del ListView de astros
-
+El adapter relacionado con este código se actualiza al realizar cambios en la List de astros registrados.
 ```sh
 public class astros_list_adapter extends ArrayAdapter {
 
@@ -95,3 +158,24 @@ public class astros_list_adapter extends ArrayAdapter {
    [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
    [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
    [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+* PDF
+* HTML
+* Markdown
+
+## Tutoriales de Markdown
+
+Para aprender a usar Markdown puedes consultar los siguientes tutoriales:
+
+[Tutorial de Tutorial Markdown](https://tutorialmarkdown.com)
+[Guía definitiva de Markdown](https://neoguias.com/markdown)
+
+Si te gusta **Editor Markdown** y quieres publicar tu tutorial en esta lista, envía un mensaje a edu@edulazaro.com con tu nombre, el nombre del tutorial y la URL del tutorial.
+
+## Novedades
+
+Novedades de la última versión:
+
+* Puedes arrastrar y soltar documentos Markdown o archivos HTML en el editor.
+* También puedes incluir imágenes, aunque para ello deberás inlazar tu cuente de Dropbox.
+
+
