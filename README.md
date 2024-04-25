@@ -28,6 +28,8 @@ En la pantalla inicial se verá una lista de los astros ya observados con anteri
 
 Una vez introducidos los datos correctamente, se agregará el astro a la lista de registros y se cerrará la actividad, volviendo a la pantalla previa con los datos actualizados.
 
+
+
 #### Codigo de envio de datos
 
 ```sh
@@ -134,48 +136,3 @@ public class astros_list_adapter extends ArrayAdapter {
     }
 }
 ```
-
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
-* PDF
-* HTML
-* Markdown
-
-## Tutoriales de Markdown
-
-Para aprender a usar Markdown puedes consultar los siguientes tutoriales:
-
-[Tutorial de Tutorial Markdown](https://tutorialmarkdown.com)
-[Guía definitiva de Markdown](https://neoguias.com/markdown)
-
-Si te gusta **Editor Markdown** y quieres publicar tu tutorial en esta lista, envía un mensaje a edu@edulazaro.com con tu nombre, el nombre del tutorial y la URL del tutorial.
-
-## Novedades
-
-Novedades de la última versión:
-
-* Puedes arrastrar y soltar documentos Markdown o archivos HTML en el editor.
-* También puedes incluir imágenes, aunque para ello deberás inlazar tu cuente de Dropbox.
-
-
