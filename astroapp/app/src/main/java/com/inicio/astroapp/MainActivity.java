@@ -1,5 +1,9 @@
 package com.inicio.astroapp;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lista_astros;
     public ConstraintLayout vista_main;
 
+    ActivityResultLauncher<Intent> launcher;
     public TextView texto_item, num_astros;
     public ImageButton boton_desplegable;
     public Button add_astro_button;
@@ -72,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
     }
 
     public void num_astros(){
@@ -110,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             erase_activator();
         }
         Intent intent = new Intent(this, Add_astro.class);
-        startActivity(intent);
+        launcher.launch(intent);
     }
 
     public void cargar_datos(){

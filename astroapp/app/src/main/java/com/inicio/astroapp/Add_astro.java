@@ -181,7 +181,7 @@ public class Add_astro extends AppCompatActivity {
 
 
     public void confirm_astro(){
-        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && nombre_astro.getText().toString() != ""){
+        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && !nombre_astro.getText().toString().equals("")){
             nombre_final = "" + nombre_astro.getText();
             categoria_final = selected_img;
             fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + " | " + hora_formatter();
@@ -193,8 +193,7 @@ public class Add_astro extends AppCompatActivity {
             guardar_astrosPersistentes();
 
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            finish();
         }
         else{
             if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
@@ -203,7 +202,7 @@ public class Add_astro extends AppCompatActivity {
             if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
                 hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
             }
-            if(nombre_astro.getText().toString() == ""){
+            if(nombre_astro.getText().toString().equals("")){
                 nombre_astro.setError("Introduce un nombre");
             }
         }
