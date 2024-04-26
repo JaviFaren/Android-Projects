@@ -57,12 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         lista_astros = findViewById(R.id.lista_astros);
+        //Usa el adapter para mostrar el registro de astros usando el xml correspondiente
         adapter = new astros_list_adapter(MainActivity.this, R.layout.item_mainlist,  astros_data.lista_astros);
         lista_astros.setAdapter(adapter);
 
         boton_desplegable.setOnClickListener(view -> boton_despl_accion());
         add_astro_button.setOnClickListener(view -> siguiente_activity());
         erase_astro_button.setOnClickListener(view -> erase_activator());
+
+        //Se encarga de eliminar astros del registro y actualizar el adapter para mostrar los astros restantes siempre que el modo de borrado este activado
         lista_astros.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -78,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Notifica al adapter para actualizar la lista que muestra el registro de astros frente a la adicion de un nuevo astro en la pantalla previa
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -88,10 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    //Muestra en un texto el numero total de astros visualizados
     public void num_astros(){
         num_astros.setText("Has Visto " + astros_data.lista_astros.size() + " Astros");
     }
 
+    //Vinculado al boton y otras funciones que activa y desactiva el modo que permite borrar astros de la lista
     public void erase_activator(){
 
         if(!puede_borrar){
@@ -106,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         erase_astro_button.setVisibility(View.INVISIBLE);
     }
 
+    //Vinculado al boton que despliega las opciones de añadir o eliminar astros
     public void boton_despl_accion(){
         if(add_astro_button.getVisibility() == View.INVISIBLE && erase_astro_button.getVisibility() == View.INVISIBLE){
             add_astro_button.setVisibility(View.VISIBLE);
@@ -117,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Vinculado al boton de añadir astro para llevar al usuario a la pantalla secundaria de agregar astro
     public void siguiente_activity(){
         add_astro_button.setVisibility(View.INVISIBLE);
         erase_astro_button.setVisibility(View.INVISIBLE);
@@ -127,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         launcher.launch(intent);
     }
 
+    //Carga el JSON y lo convierte a java en caso de no estar vacio para recuperar astros de un uso previo de la aplicacion
     public void cargar_datos(){
         SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
         String json = preferences.getString("datos_astros", null);
@@ -135,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Guarda los astros en JSON para su posterior recuperacion, en este caso se usa para almacenar los cambios al eliminar algun astro
     public void guardar_astrosPersistentes(){
         SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

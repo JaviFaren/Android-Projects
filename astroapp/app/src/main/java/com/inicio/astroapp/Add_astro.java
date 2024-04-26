@@ -50,8 +50,11 @@ public class Add_astro extends AppCompatActivity {
         categoria_shower.setText("Selecciona categoria");
         nombre_astro = findViewById(R.id.input_astroName);
         lista_botones = findViewById(R.id.lista_botones);
+        //Adapter para mostrar los iconos de las categorias disponibles para los astros
         adapter = new astro_category_adapter(this, R.layout.astro_category,  astro_cat_data.imagenes_iconos());
         lista_botones.setAdapter(adapter);
+
+        //Muestra mediante un texto la categoria seleccionada y cambia el color de su icono correspondiente para mejor entendimiento del usuario
         lista_botones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -88,6 +91,7 @@ public class Add_astro extends AppCompatActivity {
 
 
                 v.findViewById(R.id.boton_categoria).setBackgroundColor(Color.rgb(87,35,100));
+                categoria_shower.setTextColor(Color.rgb(214, 188, 56));
                 categoria();
             }
         });
@@ -111,6 +115,7 @@ public class Add_astro extends AppCompatActivity {
         confirmar_boton.setOnClickListener(view -> confirm_astro());
     }
 
+    //Vinculado al boton icono del calendario y muestra u oculta un calendario donde el usuario selecciona la fecha de avistamiento del astro
     public void show_calendar(){
         if(calendario.getVisibility() == View.VISIBLE){
             fecha_seleccionada.setText("Fecha: " + calendario.getDayOfMonth() + " / " + calendario.getMonth() + " / " + calendario.getYear());
@@ -118,6 +123,8 @@ public class Add_astro extends AppCompatActivity {
             boton_hora.setVisibility(View.VISIBLE);
             hora_seleccionada.setVisibility(View.VISIBLE);
             fecha_seleccionada.setVisibility(View.VISIBLE);
+            fecha_seleccionada.setTextColor(Color.rgb(214, 188, 56));
+            confirmar_boton.setVisibility(View.VISIBLE);
         }
         else{
             calendario.setVisibility(View.VISIBLE);
@@ -125,17 +132,21 @@ public class Add_astro extends AppCompatActivity {
             hora.setVisibility(View.INVISIBLE);
             hora_seleccionada.setVisibility(View.INVISIBLE);
             fecha_seleccionada.setVisibility(View.INVISIBLE);
+            confirmar_boton.setVisibility(View.INVISIBLE);
         }
     }
 
+    //vinculado al boton icono de la hora y muestra u oculta el selector para que el usuario seleccione la hora concreta de visualizacion del astro
     public void show_date(){
         if(hora.getVisibility() == View.VISIBLE){
 
             hora_seleccionada.setText(hora_formatter());
             fecha_seleccionada.setVisibility(View.VISIBLE);
+            hora_seleccionada.setTextColor(Color.rgb(214, 188, 56));
             hora_seleccionada.setVisibility(View.VISIBLE);
             hora.setVisibility(View.INVISIBLE);
             boton_calendar.setVisibility(View.VISIBLE);
+            confirmar_boton.setVisibility(View.VISIBLE);
         }
         else{
             hora.setVisibility(View.VISIBLE);
@@ -143,9 +154,11 @@ public class Add_astro extends AppCompatActivity {
             hora_seleccionada.setVisibility(View.INVISIBLE);
             boton_calendar.setVisibility(View.INVISIBLE);
             calendario.setVisibility(View.INVISIBLE);
+            confirmar_boton.setVisibility(View.INVISIBLE);
         }
     }
 
+    //Modifica la hora recibida del time picker y le asigna un formato para mostrarla correctamente al usuario
     public String hora_formatter(){
         String am_pm = "";
         String hora_real = "";
@@ -173,6 +186,7 @@ public class Add_astro extends AppCompatActivity {
         return hora_final;
     }
 
+    //Selecciona el icono adecuado para el astro seleccionado en preparacion para su construccion
     public void categoria(){
         Integer[] array_imagenes = astro_cat_data.imagenes_iconos();
         selected_img = array_imagenes[item_pos];
@@ -180,8 +194,12 @@ public class Add_astro extends AppCompatActivity {
     }
 
 
+    //Vinculado al boton de confirmacion de registrar astro
+    //Comprueba si el usuario ha rellenado el nombre, categoria, fecha y hora, en caso afirmativo, crea el astro, lo añade al registro y regresa a la pantalla previa.
+    //En caso de no rellenar toda la informacion muestra los errores correspondientes para que el usuario los rellene
     public void confirm_astro(){
-        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN" && item_pos != -1 && !nombre_astro.getText().toString().equals("")){
+        if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN"
+                && item_pos != -1 && !nombre_astro.getText().toString().equals("") && !categoria_shower.getText().toString().equals("Selecciona categoria")){
             nombre_final = "" + nombre_astro.getText();
             categoria_final = selected_img;
             fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + " | " + hora_formatter();
@@ -199,8 +217,20 @@ public class Add_astro extends AppCompatActivity {
             if(fecha_seleccionada.getText() == "Fecha: NAN/NAN/NAN"){
                 fecha_seleccionada.setTextColor(Color.rgb(123, 3, 35));
             }
+            else{
+                fecha_seleccionada.setTextColor(Color.rgb(214, 188, 56));
+            }
             if(hora_seleccionada.getText() == "Hora: NAN:NAN"){
                 hora_seleccionada.setTextColor(Color.rgb(123, 3, 35));
+            }
+            else{
+                hora_seleccionada.setTextColor(Color.rgb(214, 188, 56));
+            }
+            if(categoria_shower.getText().toString().equals("Selecciona categoria")){
+                categoria_shower.setTextColor(Color.rgb(123, 3, 35));
+            }
+            else{
+                categoria_shower.setTextColor(Color.rgb(214, 188, 56));
             }
             if(nombre_astro.getText().toString().equals("")){
                 nombre_astro.setError("Introduce un nombre");
@@ -208,7 +238,7 @@ public class Add_astro extends AppCompatActivity {
         }
     }
 
-
+    //Convierte el registro de astros en JSON para su persistencia y guardado
     public void guardar_astrosPersistentes(){
         SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

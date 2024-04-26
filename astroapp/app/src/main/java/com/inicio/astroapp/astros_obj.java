@@ -9,6 +9,7 @@ public class astros_obj {
     Integer imagen_astro;
 
 
+    //Objeto que almacena los datos necesarios para crear un astro
     public astros_obj(String nombre_astro, Integer imagen_astro, String fecha_astro) {
         this.nombre_astro = nombre_astro;
         this.imagen_astro = imagen_astro;

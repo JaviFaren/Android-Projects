@@ -21,6 +21,7 @@ public class astro_category_adapter extends ArrayAdapter {
     Context context;
     public Integer imagenes_categorias[];
 
+    //Constructor de los botones de las categorias seleccionables para el astro nuevo
     public astro_category_adapter(@NonNull Context context, int resource, @NonNull Integer[] datos) {
         super(context, resource, datos);
         this.context = context;
@@ -28,6 +29,7 @@ public class astro_category_adapter extends ArrayAdapter {
         imagenes_categorias = datos;
     }
 
+    //Asignador de iconos correspondientes a los botones de la gridView segun el xml vinculado
     @NonNull
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {

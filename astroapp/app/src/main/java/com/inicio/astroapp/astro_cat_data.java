@@ -2,6 +2,7 @@ package com.inicio.astroapp;
 
 public class astro_cat_data {
 
+    //Array con los iconos correspondientes de las categorias de astro
     public static Integer[] imagenes_iconos(){
         Integer iconos_botones[] = new Integer[8];
 

@@ -147,7 +147,7 @@
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:text="CONFIRMAR"
-        android:textColor="#FFD233"
+        android:textColor="#D6BC38"
         android:backgroundTint="#4EACFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

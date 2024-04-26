@@ -20,7 +20,7 @@ public class astros_list_adapter extends ArrayAdapter {
     List<astros_obj> datos_astros;
 
 
-
+    //Constructor de adapter del registro de astros para la actividad principal
     public astros_list_adapter(@NonNull Context context, int resource, @NonNull List<astros_obj> datos) {
         super(context, resource, datos);
         this.context = context;
@@ -28,6 +28,7 @@ public class astros_list_adapter extends ArrayAdapter {
         datos_astros = datos;
     }
 
+    //Asignacion de los elementos visuales a los items individuales de la lista de astros de la actividad principal
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

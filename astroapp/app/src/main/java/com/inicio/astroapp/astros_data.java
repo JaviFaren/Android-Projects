@@ -7,9 +7,12 @@ import com.google.gson.reflect.TypeToken;
 
 public class astros_data {
 
+    //Lista donde se almacenan todos los astros registrados por el usuario
     public static List <astros_obj> lista_astros = new ArrayList<>();
 
 
+
+    //Conversores de Java-JSON y JSON-Java para persistencia de datos
     public static String convertirAJson() {
         Gson gson = new Gson();
         String json = gson.toJson(lista_astros);
