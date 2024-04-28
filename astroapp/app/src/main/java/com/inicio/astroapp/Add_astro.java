@@ -199,7 +199,8 @@ public class Add_astro extends AppCompatActivity {
     //En caso de no rellenar toda la informacion muestra los errores correspondientes para que el usuario los rellene
     public void confirm_astro(){
         if(fecha_seleccionada.getText() != "Fecha: NAN/NAN/NAN" && hora_seleccionada.getText() != "Hora: NAN:NAN"
-                && item_pos != -1 && !nombre_astro.getText().toString().equals("") && !categoria_shower.getText().toString().equals("Selecciona categoria")){
+                && item_pos != -1 && !nombre_astro.getText().toString().equals("") && !categoria_shower.getText().toString().equals("Selecciona categoria"))
+        {
             nombre_final = "" + nombre_astro.getText();
             categoria_final = selected_img;
             fecha_final = calendario.getDayOfMonth() + "/" + calendario.getMonth() + "/" + calendario.getYear() + " | " + hora_formatter();
