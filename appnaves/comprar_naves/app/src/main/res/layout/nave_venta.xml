@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#BF4BB5CF"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/nombre_nave_tienda"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="20dp"
+        android:text="Nombre Naveeeeeeeeeeeeeeeeeeeeeeeeeee"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/precio_nave_tienda"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="20dp"
+        android:text="Precio 🪙"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nombre_nave_tienda"
+        app:layout_constraintTop_toTopOf="@+id/nombre_nave_tienda" />
+
+    <ImageView
+        android:id="@+id/boton_compra"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="80dp"
+        android:backgroundTint="#00000000"
+        android:scaleType="centerInside"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/buy_nave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nombre_nave_tienda"></ImageView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
